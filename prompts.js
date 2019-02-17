@@ -2,9 +2,8 @@ module.exports = [
   {
     name: 'viewName',
     type: 'input',
-    message: 'Type a name for the page',
-    default: 'clients',
-    validate: v => !!v
+    message: 'Type a route for the view (use kabab-case)',
+    validate: v => /^([a-z]+-)*[a-z]+$/.test(v) || 'use-kebab-case-only !'
   },
   {
     name: 'addMockServer',

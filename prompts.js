@@ -3,7 +3,8 @@ module.exports = [
     name: 'viewName',
     type: 'input',
     message: 'Type a name for the page',
-    default: 'clients'
+    default: 'clients',
+    validate: v => !!v
   },
   {
     name: 'addMockServer',

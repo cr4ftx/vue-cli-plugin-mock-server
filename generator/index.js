@@ -5,5 +5,5 @@ module.exports = (api, options) => {
     require('./mock')(api, options)
   }
 
-  api.exitLog("Merci d'avoir utilisé le plugin d'Effisoft 👋")
+  api.exitLog("Thanks for using effisoft plugin 👋")
 }

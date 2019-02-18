@@ -3,7 +3,7 @@ module.exports = (api) => {
 
   api.extendPackage({
     scripts: {
-      'mock': 'json-server mock/db.js -d 1000',
+      'mock': 'json-server mock/db.js --routes mock/routes.json -d 1000',
       'dev': 'concurrently "npm:mock" "npm:serve"'
     },
     devDependencies: {
@@ -12,7 +12,11 @@ module.exports = (api) => {
     },
     vue: {
       devServer: {
-        proxy: 'http://localhost:3000'
+        proxy: {
+          '/api': {
+            target: 'http://localhost:3000'
+          }
+        }
       }
     }
   })

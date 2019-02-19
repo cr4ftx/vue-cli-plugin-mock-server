@@ -1,5 +1,5 @@
 module.exports = (api, options) => {
-  require('./template')(api, options)
+  require('./view')(api, options)
 
   if (options.addMockServer) {
     require('./mock')(api)

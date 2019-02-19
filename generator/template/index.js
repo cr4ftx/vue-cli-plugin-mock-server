@@ -10,7 +10,8 @@ const toPascalCase = kebabCaseStr => {
     .join('')
 }
 
-const getView = name => `
+const getView = name =>
+  `
 <template>
   <div>
     <h1>${name}</h1>
@@ -37,12 +38,16 @@ module.exports = (api, { viewName }) => {
       api.postProcessFiles(files => {
         const router = files['src/router.js']
         if (router) {
-          files['src/router.js'] = router.replace(/routes: \[/, `routes: [
+          files['src/router.js'] = router.replace(
+            /routes: \[/,
+            `routes: [
+    // use this webpackChunkName to split the nested components for the view
     {
       path: '/${viewName}',
       name: '${viewName}',
       component: () => import(/* webpackChunkName: "${viewName}" */ '@/views/${viewName}/${fileName}.vue')
-    },`)
+    },`
+          )
         }
       })
     }

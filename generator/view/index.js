@@ -1,10 +1,7 @@
 const toPascalCase = kebabCaseStr => {
   return kebabCaseStr
     .split('-')
-    .map(word => {
-      const [h, ...t] = word
-      return h.toUpperCase() + t.join('')
-    })
+    .map(([h, ...t]) => h.toUpperCase() + t.join(''))
     .join('')
 }
 
@@ -15,7 +12,7 @@ module.exports = (api, { viewName }) => {
     [`./src/views/${viewName}/${fileName}.vue`]: './template/View.vue'
   }
 
-  api.render(files, { viewName })
+  api.render(files, { viewName, fileName })
 
   if (api.hasPlugin('router')) {
     api.postProcessFiles(files => {
@@ -24,12 +21,11 @@ module.exports = (api, { viewName }) => {
         files['src/router.js'] = router.replace(
           /routes: \[/,
           `routes: [
-  // use this webpackChunkName to split the nested components for the view
-  {
-    path: '/${viewName}',
-    name: '${viewName}',
-    component: () => import(/* webpackChunkName: "${viewName}" */ '@/views/${viewName}/${fileName}.vue')
-  },`
+    {
+      path: '/${viewName}',
+      name: '${viewName}',
+      component: () => import(/* webpackChunkName: "${viewName}" */ '@/views/${viewName}/${fileName}.vue')
+    },`
         )
       }
     })

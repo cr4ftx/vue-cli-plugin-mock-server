@@ -3,7 +3,7 @@ module.exports = api => {
 
   api.extendPackage({
     scripts: {
-      mock: 'json-server mock/db.js --routes mock/routes.json -d 1000',
+      mock: 'json-server mock/db.js -d 1000',
       dev: 'concurrently "npm:mock" "npm:serve"'
     },
     devDependencies: {
@@ -13,17 +13,12 @@ module.exports = api => {
     vue: {
       devServer: {
         proxy: {
-          '/api': {
-            target: 'http://localhost:3000'
+          '^/api': {
+            target: 'http://localhost:3000',
+            pathRewrite: { '^/api': '' }
           }
         }
       }
     }
   })
-
-  api.exitLog(
-    `You can run the mock server with npm run mock
-But you may want to use npm run dev to serve the app and mock the server`,
-    'info'
-  )
 }

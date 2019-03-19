@@ -1,17 +1,21 @@
-# vue-cli-plugin-effisoft
+# vue-cli-plugin-mock-server
 
-This plugin will install and configure a json-server for your Vue project.
+This plugin install a json-server for your Vue project.
 
-Your API will be exposed on <http://localhost:3000/api>.
+The API will be exposed on <http://localhost:3000>.
 
-Your webpack dev server will proxy any request going on /api to the API.
+webpack-dev-server will proxy any request from /api to <http://localhost:3000>.
 
 For futher information about json-server see <https://github.com/typicode/json-server>.
 
 ## Installation
 
 ```bash
-vue add effisoft
+git clone https://github.com/swanncastel/vue-cli-plugin-mock-server
+
+# On your project
+npm install -D /absolute/path/to/vue-cli-plugin-mock-server
+vue invoke mock-server
 ```
 
 ## In your project

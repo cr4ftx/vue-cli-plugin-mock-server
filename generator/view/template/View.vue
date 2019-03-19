@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1><%= options.viewName %></h1>
+    <h1><%= fileName %></h1>
     <div class="loader" v-show="loading"></div>
-    <ul v-for="({ text }, i) in <%= options.viewName %>" :key="i">
+    <ul v-for="({ text }, i) in <%= fileName %>" :key="i">
       <li>{{ text }}</li>
     </ul>
   </div>
@@ -10,19 +10,19 @@
 
 <script>
 export default {
-  name: '<%= options.viewName %>',
+  name: '<%= fileName %>',
 
   data() {
     return {
-      '<%= options.viewName %>': [],
+      <%= fileName %>: [],
       loading: true
     }
   },
 
   created() {
-    window.fetch('/api/<%= options.viewName %>')
+    window.fetch('/api/<%= viewName %>')
       .then(res => res.json())
-      .then(<%= options.viewName %> => this.<%= options.viewName %> = <%= options.viewName %>)
+      .then(<%= fileName %> => this.<%= fileName %> = <%= fileName %>)
       .finally(() => (this.loading = false))
   }
 }

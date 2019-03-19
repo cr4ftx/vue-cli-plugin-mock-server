@@ -1,2 +1,2 @@
-// Nothing to add in the webpack config
+// Nothing to add to the webpack config
 module.exports = () => {}
